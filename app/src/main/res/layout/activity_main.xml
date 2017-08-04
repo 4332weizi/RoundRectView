@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.auxo.roundrect.RoundRectRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    app:backgroundColor="@android:color/holo_green_light"
+    app:borderColor="@color/colorAccent"
+    app:borderPadding="5dp"
+    app:borderWidth="10dp"
+    app:radius="20dp"
+    tools:context="io.auxo.roundrect.sample.MainActivity">
+
+    <io.auxo.roundrect.RoundRectTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="Hello World!"
+        app:backgroundColor="@color/colorAccent"
+        app:borderColor="@color/colorPrimary"
+        app:borderPadding="3px"
+        app:borderWidth="1dp"
+        app:radius="50%"/>
+
+</io.auxo.roundrect.RoundRectRelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="View">
+        <attr name="radius" format="dimension|fraction"/>
+        <attr name="bottomLeftRadius" format="dimension|fraction"/>
+        <attr name="bottomRightRadius" format="dimension|fraction"/>
+        <attr name="topLeftRadius" format="dimension|fraction"/>
+        <attr name="topRightRadius" format="dimension|fraction"/>
+        <attr name="innerBottomLeftRadius" format="dimension|fraction"/>
+        <attr name="innerBottomRightRadius" format="dimension|fraction"/>
+        <attr name="innerTopLeftRadius" format="dimension|fraction"/>
+        <attr name="innerTopRightRadius" format="dimension|fraction"/>
+        <attr name="outerBottomLeftRadius" format="dimension|fraction"/>
+        <attr name="outerBottomRightRadius" format="dimension|fraction"/>
+        <attr name="outerTopLeftRadius" format="dimension|fraction"/>
+        <attr name="outerTopRightRadius" format="dimension|fraction"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderPadding" format="dimension"/>
+        <attr name="borderPaddingLeft" format="dimension"/>
+        <attr name="borderPaddingTop" format="dimension"/>
+        <attr name="borderPaddingRight" format="dimension"/>
+        <attr name="borderPaddingBottom" format="dimension"/>
+    </declare-styleable>
+</resources>
