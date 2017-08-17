@@ -1,23 +1,22 @@
 package io.auxo.roundrect;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
-public class RoundRectLinearLayout extends LinearLayout {
+public class RoundRectButton extends AppCompatButton {
 
     private RoundRectShapeHelper mRoundRectShapeHelper;
 
-    public RoundRectLinearLayout(Context context) {
+    public RoundRectButton(Context context) {
         this(context, null);
     }
 
-    public RoundRectLinearLayout(Context context, @Nullable AttributeSet attrs) {
+    public RoundRectButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RoundRectLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public RoundRectButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mRoundRectShapeHelper = new RoundRectShapeHelper(context, attrs, defStyleAttr, 0, mAttrsDelegate);
     }
@@ -31,112 +30,112 @@ public class RoundRectLinearLayout extends LinearLayout {
     private RoundRectAttrsDelegate mAttrsDelegate = new RoundRectAttrsDelegate() {
         @Override
         public int[] getName() {
-            return R.styleable.RoundRectLinearLayout;
+            return R.styleable.RoundRectButton;
         }
 
         @Override
         public int getBackgroundColor() {
-            return R.styleable.RoundRectLinearLayout_backgroundColor;
+            return R.styleable.RoundRectButton_backgroundColor;
         }
 
         @Override
         public int getBorderWidth() {
-            return R.styleable.RoundRectLinearLayout_borderWidth;
+            return R.styleable.RoundRectButton_borderWidth;
         }
 
         @Override
         public int getBorderColor() {
-            return R.styleable.RoundRectLinearLayout_borderColor;
+            return R.styleable.RoundRectButton_borderColor;
         }
 
         @Override
         public int getBorderPadding() {
-            return R.styleable.RoundRectLinearLayout_borderPadding;
+            return R.styleable.RoundRectButton_borderPadding;
         }
 
         @Override
         public int getBorderPaddingLeft() {
-            return R.styleable.RoundRectLinearLayout_borderPaddingLeft;
+            return R.styleable.RoundRectButton_borderPaddingLeft;
         }
 
         @Override
         public int getBorderPaddingTop() {
-            return R.styleable.RoundRectLinearLayout_borderPaddingTop;
+            return R.styleable.RoundRectButton_borderPaddingTop;
         }
 
         @Override
         public int getBorderPaddingRight() {
-            return R.styleable.RoundRectLinearLayout_borderPaddingRight;
+            return R.styleable.RoundRectButton_borderPaddingRight;
         }
 
         @Override
         public int getBorderPaddingBottom() {
-            return R.styleable.RoundRectLinearLayout_borderPaddingBottom;
+            return R.styleable.RoundRectButton_borderPaddingBottom;
         }
 
         @Override
         public int getRadius() {
-            return R.styleable.RoundRectLinearLayout_cornerRadius;
+            return R.styleable.RoundRectButton_cornerRadius;
         }
 
         @Override
         public int getTopLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_topLeftRadius;
+            return R.styleable.RoundRectButton_topLeftRadius;
         }
 
         @Override
         public int getTopRightRadius() {
-            return R.styleable.RoundRectLinearLayout_topRightRadius;
+            return R.styleable.RoundRectButton_topRightRadius;
         }
 
         @Override
         public int getBottomRightRadius() {
-            return R.styleable.RoundRectLinearLayout_bottomRightRadius;
+            return R.styleable.RoundRectButton_bottomRightRadius;
         }
 
         @Override
         public int getBottomLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_bottomLeftRadius;
+            return R.styleable.RoundRectButton_bottomLeftRadius;
         }
 
         @Override
         public int getInnerTopLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_innerTopLeftRadius;
+            return R.styleable.RoundRectButton_innerTopLeftRadius;
         }
 
         @Override
         public int getOuterTopLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_outerTopLeftRadius;
+            return R.styleable.RoundRectButton_outerTopLeftRadius;
         }
 
         @Override
         public int getInnerTopRightRadius() {
-            return R.styleable.RoundRectLinearLayout_innerTopRightRadius;
+            return R.styleable.RoundRectButton_innerTopRightRadius;
         }
 
         @Override
         public int getOuterTopRightRadius() {
-            return R.styleable.RoundRectLinearLayout_outerTopRightRadius;
+            return R.styleable.RoundRectButton_outerTopRightRadius;
         }
 
         @Override
         public int getInnerBottomRightRadius() {
-            return R.styleable.RoundRectLinearLayout_innerBottomRightRadius;
+            return R.styleable.RoundRectButton_innerBottomRightRadius;
         }
 
         @Override
         public int getOuterBottomRightRadius() {
-            return R.styleable.RoundRectLinearLayout_outerBottomRightRadius;
+            return R.styleable.RoundRectButton_outerBottomRightRadius;
         }
 
         @Override
         public int getInnerBottomLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_innerBottomLeftRadius;
+            return R.styleable.RoundRectButton_innerBottomLeftRadius;
         }
 
         @Override
         public int getOuterBottomLeftRadius() {
-            return R.styleable.RoundRectLinearLayout_outerBottomLeftRadius;
+            return R.styleable.RoundRectButton_outerBottomLeftRadius;
         }
     };
 }

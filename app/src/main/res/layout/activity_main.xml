@@ -9,7 +9,7 @@
     app:borderColor="@color/colorAccent"
     app:borderPadding="5dp"
     app:borderWidth="10dp"
-    app:radius="20dp"
+    app:cornerRadius="20dp"
     tools:context="io.auxo.roundrect.sample.MainActivity">
 
     <io.auxo.roundrect.RoundRectTextView
@@ -27,6 +27,6 @@
         app:borderColor="@color/colorPrimary"
         app:borderPadding="3px"
         app:borderWidth="1dp"
-        app:radius="50%"/>
+        app:cornerRadius="50%"/>
 
 </io.auxo.roundrect.RoundRectRelativeLayout>

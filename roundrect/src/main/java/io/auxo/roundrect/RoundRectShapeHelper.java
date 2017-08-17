@@ -13,16 +13,13 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.View;
 
 public class RoundRectShapeHelper {
 
     protected DisplayMetrics mMetrics;
+    protected RoundRectAttrsDelegate mAttrsDelegate;
 
-    private TypedValue radius = new TypedValue();
-    private TypedValue bottomLeftRadius = new TypedValue();
-    private TypedValue bottomRightRadius = new TypedValue();
-    private TypedValue topLeftRadius = new TypedValue();
-    private TypedValue topRightRadius = new TypedValue();
     private TypedValue innerTopLeftRadius = new TypedValue();
     private TypedValue innerTopRightRadius = new TypedValue();
     private TypedValue innerBottomLeftRadius = new TypedValue();
@@ -31,7 +28,6 @@ public class RoundRectShapeHelper {
     private TypedValue outerTopRightRadius = new TypedValue();
     private TypedValue outerBottomLeftRadius = new TypedValue();
     private TypedValue outerBottomRightRadius = new TypedValue();
-    private float borderPadding = -1;
     private float borderPaddingLeft = 0;
     private float borderPaddingTop = 0;
     private float borderPaddingRight = 0;
@@ -40,19 +36,24 @@ public class RoundRectShapeHelper {
     private int borderColor = Color.TRANSPARENT;
     private int background = Color.TRANSPARENT;
 
-    public RoundRectShapeHelper(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RoundRectShapeHelper(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, RoundRectAttrsDelegate delegate) {
+
+        mAttrsDelegate = delegate;
+
         final Resources.Theme theme = context.getTheme();
 
         mMetrics = context.getResources().getDisplayMetrics();
 
-        TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.View, defStyleAttr, defStyleRes);
+        TypedArray a = theme.obtainStyledAttributes(attrs, mAttrsDelegate.getName(), defStyleAttr, defStyleRes);
 
-        background = a.getColor(R.styleable.View_backgroundColor, background);
+        background = a.getColor(mAttrsDelegate.getBackgroundColor(), background);
 
-        borderWidth = a.getDimension(R.styleable.View_borderWidth, borderWidth);
-        borderColor = a.getColor(R.styleable.View_borderColor, borderColor);
+        borderWidth = a.getDimension(mAttrsDelegate.getBorderWidth(), borderWidth);
+        borderColor = a.getColor(mAttrsDelegate.getBorderColor(), borderColor);
 
-        borderPadding = a.getDimension(R.styleable.View_borderPadding, borderPadding);
+        float borderPadding = -1;
+
+        borderPadding = a.getDimension(mAttrsDelegate.getBorderPadding(), borderPadding);
 
         if (borderPadding >= 0) {
             borderPaddingLeft = borderPadding;
@@ -60,68 +61,79 @@ public class RoundRectShapeHelper {
             borderPaddingRight = borderPadding;
             borderPaddingBottom = borderPadding;
         } else {
-            borderPaddingLeft = a.getDimension(R.styleable.View_borderPaddingLeft, borderPaddingLeft);
-            borderPaddingTop = a.getDimension(R.styleable.View_borderPaddingTop, borderPaddingTop);
-            borderPaddingRight = a.getDimension(R.styleable.View_borderPaddingRight, borderPaddingRight);
-            borderPaddingBottom = a.getDimension(R.styleable.View_borderPaddingBottom, borderPaddingBottom);
+            borderPaddingLeft = a.getDimension(mAttrsDelegate.getBorderPaddingLeft(), borderPaddingLeft);
+            borderPaddingTop = a.getDimension(mAttrsDelegate.getBorderPaddingTop(), borderPaddingTop);
+            borderPaddingRight = a.getDimension(mAttrsDelegate.getBorderPaddingRight(), borderPaddingRight);
+            borderPaddingBottom = a.getDimension(mAttrsDelegate.getBorderPaddingBottom(), borderPaddingBottom);
         }
 
+        TypedValue radius = new TypedValue();
+        TypedValue bottomLeftRadius = new TypedValue();
+        TypedValue bottomRightRadius = new TypedValue();
+        TypedValue topLeftRadius = new TypedValue();
+        TypedValue topRightRadius = new TypedValue();
 
-        radius = a.peekValue(R.styleable.View_radius);
+        radius.setTo(peekValue(a, mAttrsDelegate.getRadius()));
 
-        radius.setTo(a.peekValue(R.styleable.View_radius));
-
-        if (radius.data >= 0) {
+        if (radius.type != TypedValue.TYPE_NULL) {
             topLeftRadius.setTo(radius);
             topRightRadius.setTo(radius);
             bottomRightRadius.setTo(radius);
             bottomLeftRadius.setTo(radius);
         } else {
-            topLeftRadius.setTo(a.peekValue(R.styleable.View_topLeftRadius));
-            topRightRadius.setTo(a.peekValue(R.styleable.View_topRightRadius));
-            bottomRightRadius.setTo(a.peekValue(R.styleable.View_bottomRightRadius));
-            bottomLeftRadius.setTo(a.peekValue(R.styleable.View_bottomLeftRadius));
+            topLeftRadius.setTo(peekValue(a, mAttrsDelegate.getTopLeftRadius()));
+            topRightRadius.setTo(peekValue(a, mAttrsDelegate.getTopRightRadius()));
+            bottomRightRadius.setTo(peekValue(a, mAttrsDelegate.getBottomRightRadius()));
+            bottomLeftRadius.setTo(peekValue(a, mAttrsDelegate.getBottomLeftRadius()));
         }
 
-        if (topLeftRadius.data >= 0) {
+        if (topLeftRadius.type != TypedValue.TYPE_NULL) {
             innerTopLeftRadius.setTo(topLeftRadius);
             outerTopLeftRadius.setTo(topLeftRadius);
         } else {
-            innerTopLeftRadius.setTo(a.peekValue(R.styleable.View_innerTopLeftRadius));
-            outerTopLeftRadius.setTo(a.peekValue(R.styleable.View_outerTopLeftRadius));
+            innerTopLeftRadius.setTo(peekValue(a, mAttrsDelegate.getInnerTopLeftRadius()));
+            outerTopLeftRadius.setTo(peekValue(a, mAttrsDelegate.getOuterTopLeftRadius()));
         }
 
-        if (topRightRadius.data >= 0) {
+        if (topRightRadius.type != TypedValue.TYPE_NULL) {
             innerTopRightRadius.setTo(topRightRadius);
             outerTopRightRadius.setTo(topRightRadius);
         } else {
-            innerTopRightRadius.setTo(a.peekValue(R.styleable.View_innerTopRightRadius));
-            outerTopRightRadius.setTo(a.peekValue(R.styleable.View_outerTopRightRadius));
+            innerTopRightRadius.setTo(peekValue(a, mAttrsDelegate.getInnerTopRightRadius()));
+            outerTopRightRadius.setTo(peekValue(a, mAttrsDelegate.getOuterTopRightRadius()));
         }
 
-        if (bottomRightRadius.data >= 0) {
+        if (bottomRightRadius.type != TypedValue.TYPE_NULL) {
             innerBottomRightRadius.setTo(bottomRightRadius);
             outerBottomRightRadius.setTo(bottomRightRadius);
         } else {
-            innerBottomRightRadius.setTo(a.peekValue(R.styleable.View_innerBottomRightRadius));
-            outerBottomRightRadius.setTo(a.peekValue(R.styleable.View_outerBottomRightRadius));
+            innerBottomRightRadius.setTo(peekValue(a, mAttrsDelegate.getInnerBottomRightRadius()));
+            outerBottomRightRadius.setTo(peekValue(a, mAttrsDelegate.getOuterBottomRightRadius()));
         }
 
-        if (bottomLeftRadius.data >= 0) {
+        if (bottomLeftRadius.type != TypedValue.TYPE_NULL) {
             innerBottomLeftRadius.setTo(bottomLeftRadius);
             outerBottomLeftRadius.setTo(bottomLeftRadius);
         } else {
-            innerBottomLeftRadius.setTo(a.peekValue(R.styleable.View_innerBottomLeftRadius));
-            outerBottomLeftRadius.setTo(a.peekValue(R.styleable.View_outerBottomLeftRadius));
+            innerBottomLeftRadius.setTo(peekValue(a, mAttrsDelegate.getInnerBottomLeftRadius()));
+            outerBottomLeftRadius.setTo(peekValue(a, mAttrsDelegate.getOuterBottomLeftRadius()));
         }
         a.recycle();
     }
 
     private boolean radiusPrepared = false;
-    private float[] outerRadii;
-    private float[] innerRadii;
+    private float mRectHeight = 0;
+    private float[] outerRadii = new float[8];
+    private float[] innerRadii = new float[8];
 
-    protected void prepareRadius(float height) {
+    protected boolean prepareRadius(float height) {
+
+        if (radiusPrepared && mRectHeight == height) {
+            return false;
+        }
+
+        mRectHeight = height;
+
         // 外部矩形弧度
         outerRadii = new float[]{getRadiusValue(outerTopLeftRadius, height),
                 getRadiusValue(outerTopLeftRadius, height),
@@ -140,18 +152,26 @@ public class RoundRectShapeHelper {
                 getRadiusValue(innerBottomRightRadius, height),
                 getRadiusValue(innerBottomLeftRadius, height),
                 getRadiusValue(innerBottomLeftRadius, height)};
+
         radiusPrepared = true;
+
+        return true;
+    }
+
+    private TypedValue peekValue(TypedArray a, int index, TypedValue defaultValue) {
+        TypedValue value = a.peekValue(index);
+        return value == null ? defaultValue : value;
+    }
+
+    private TypedValue peekValue(TypedArray a, int index) {
+        return peekValue(a, index, new TypedValue());
     }
 
     private Drawable mDrawableCache;
 
     public Drawable getDrawableWithHeight(float height) {
 
-        if (!radiusPrepared) {
-            prepareRadius(height);
-        }
-
-        if (mDrawableCache != null) {
+        if (!prepareRadius(height) && mDrawableCache != null) {
             return mDrawableCache;
         }
 
@@ -191,6 +211,16 @@ public class RoundRectShapeHelper {
         mDrawableCache = drawable;
 
         return drawable;
+    }
+
+    public void applyBackgroundDrawable(View view) {
+        Drawable drawable = getDrawableWithHeight(view.getMeasuredHeight());
+        int left = view.getPaddingLeft();
+        int top = view.getPaddingTop();
+        int right = view.getPaddingRight();
+        int bottom = view.getPaddingBottom();
+        view.setBackgroundDrawable(drawable);
+        view.setPadding(left, top, right, bottom);
     }
 
     protected float getRadiusValue(TypedValue value, float height) {

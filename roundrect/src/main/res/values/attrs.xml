@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="View">
-        <attr name="radius" format="dimension|fraction"/>
+    <declare-styleable name="RoundRectTextView">
+        <attr name="cornerRadius" format="dimension|fraction"/>
         <attr name="bottomLeftRadius" format="dimension|fraction"/>
         <attr name="bottomRightRadius" format="dimension|fraction"/>
         <attr name="topLeftRadius" format="dimension|fraction"/>
@@ -22,5 +22,74 @@
         <attr name="borderPaddingTop" format="dimension"/>
         <attr name="borderPaddingRight" format="dimension"/>
         <attr name="borderPaddingBottom" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="RoundRectButton">
+        <attr name="cornerRadius"/>
+        <attr name="bottomLeftRadius"/>
+        <attr name="bottomRightRadius"/>
+        <attr name="topLeftRadius"/>
+        <attr name="topRightRadius"/>
+        <attr name="innerBottomLeftRadius"/>
+        <attr name="innerBottomRightRadius"/>
+        <attr name="innerTopLeftRadius"/>
+        <attr name="innerTopRightRadius"/>
+        <attr name="outerBottomLeftRadius"/>
+        <attr name="outerBottomRightRadius"/>
+        <attr name="outerTopLeftRadius"/>
+        <attr name="outerTopRightRadius"/>
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="borderPadding"/>
+        <attr name="borderPaddingLeft"/>
+        <attr name="borderPaddingTop"/>
+        <attr name="borderPaddingRight"/>
+        <attr name="borderPaddingBottom"/>
+    </declare-styleable>
+    <declare-styleable name="RoundRectLinearLayout">
+        <attr name="cornerRadius"/>
+        <attr name="bottomLeftRadius"/>
+        <attr name="bottomRightRadius"/>
+        <attr name="topLeftRadius"/>
+        <attr name="topRightRadius"/>
+        <attr name="innerBottomLeftRadius"/>
+        <attr name="innerBottomRightRadius"/>
+        <attr name="innerTopLeftRadius"/>
+        <attr name="innerTopRightRadius"/>
+        <attr name="outerBottomLeftRadius"/>
+        <attr name="outerBottomRightRadius"/>
+        <attr name="outerTopLeftRadius"/>
+        <attr name="outerTopRightRadius"/>
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="borderPadding"/>
+        <attr name="borderPaddingLeft"/>
+        <attr name="borderPaddingTop"/>
+        <attr name="borderPaddingRight"/>
+        <attr name="borderPaddingBottom"/>
+    </declare-styleable>
+    <declare-styleable name="RoundRectRelativeLayout">
+        <attr name="cornerRadius"/>
+        <attr name="bottomLeftRadius"/>
+        <attr name="bottomRightRadius"/>
+        <attr name="topLeftRadius"/>
+        <attr name="topRightRadius"/>
+        <attr name="innerBottomLeftRadius"/>
+        <attr name="innerBottomRightRadius"/>
+        <attr name="innerTopLeftRadius"/>
+        <attr name="innerTopRightRadius"/>
+        <attr name="outerBottomLeftRadius"/>
+        <attr name="outerBottomRightRadius"/>
+        <attr name="outerTopLeftRadius"/>
+        <attr name="outerTopRightRadius"/>
+        <attr name="backgroundColor"/>
+        <attr name="borderColor"/>
+        <attr name="borderWidth"/>
+        <attr name="borderPadding"/>
+        <attr name="borderPaddingLeft"/>
+        <attr name="borderPaddingTop"/>
+        <attr name="borderPaddingRight"/>
+        <attr name="borderPaddingBottom"/>
     </declare-styleable>
 </resources>
